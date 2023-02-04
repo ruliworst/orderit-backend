@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server/index.js",
+    "build:ui": "cd ../orderit-app/ && npm run build && cp -r build ../orderit-backend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
