@@ -26,7 +26,6 @@ usersRouter.post('/register', async (request, response) => {
   const passwordHash = await bcryptjs.hash(password, saltRounds)
 
   const user = new User({
-    name,
     username,
     passwordHash
   })
@@ -65,7 +64,7 @@ usersRouter.post('/login', async (request, response) => {
 
   response
     .status(200)
-    .send({ token, username: user.username, name: user.name })
+    .send({ token, username: user.username })
 })
 
 module.exports = usersRouter
