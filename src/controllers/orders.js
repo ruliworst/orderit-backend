@@ -10,7 +10,11 @@ ordersRouter.get('/', async (request, response) => {
 ordersRouter.post('/', async (request, response) => {
   try {
     const body = request.body
+    
+    const publicId = `${body.location.slice(0, 3).toUpperCase()}${(Date.now()/Math.random()).toString().slice(0,6)}`
+
     const order = new Order({
+      publicId,
       location: body.location,
       price: body.price,
       quantity: body.quantity
@@ -26,7 +30,7 @@ ordersRouter.post('/', async (request, response) => {
 
 ordersRouter.delete('/:id', async (request, response) => {
   try{
-    await Order.findByIdAndRemove(request.params.id)
+    await Order.deleteOne({publicId: request.params.id})
     
     return response.status(204).end()
   } catch (err) {
