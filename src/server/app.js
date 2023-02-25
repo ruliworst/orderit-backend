@@ -5,6 +5,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const ordersRouter = require('../controllers/orders')
 const usersRouter = require('../controllers/users')
+const itemsRouter = require('../controllers/items')
 // const middleware = require('./utils/middleware')
 
 // const logger = require('./utils/logger')
@@ -25,6 +26,8 @@ app.use(express.json())
 app.use('/api/users', usersRouter)
 
 app.use('/api/orders', ordersRouter)
+
+app.use('/api/items', itemsRouter)
 
 /*
 if (process.env.NODE_ENV === 'test') {

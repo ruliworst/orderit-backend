@@ -2,7 +2,7 @@ const ordersRouter = require('express').Router()
 const Order = require('../models/order')
 
 ordersRouter.get('/', async (request, response) => {
-  const orders = await Order.find({})
+  const orders = await Order.find({}).populate('item')
 
   return response.json(orders)
 })
@@ -15,9 +15,11 @@ ordersRouter.post('/', async (request, response) => {
 
     const order = new Order({
       publicId,
+      status: body.status,
       location: body.location,
       price: body.price,
-      quantity: body.quantity
+      quantity: body.quantity,
+      item: body.item
     })
 
     let savedOrder = await order.save()
