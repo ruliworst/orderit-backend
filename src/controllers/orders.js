@@ -42,7 +42,7 @@ ordersRouter.delete('/:id', async (request, response) => {
 
 ordersRouter.put('/:id', async (request, response) => {
   try {
-    console.log(request.body)
+    await Order.updateOne({publicId: request.params.id}, request.body.order)
   } catch (err) {
     return response.status(400).json({ error: err.message })
   }
